@@ -1,0 +1,23 @@
+.filters {
+  width: 25%;
+}
+.price {
+  display: inline-block;
+}
+.max-price {
+  padding: 2px;
+  margin: 2px;
+  float: left;
+}
+
+.min-price {
+  padding: 2px;
+  margin: 2px;
+  float: left;
+}
+.btn-filters {
+  display: inline-block;
+}
+.filter-list {
+  float: left;
+}
