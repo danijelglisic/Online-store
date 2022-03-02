@@ -1,8 +1,8 @@
 import { gql, useQuery } from '@apollo/client';
 import React, { useEffect } from 'react'
-import CartArticleCard from '../article_card/CartArticleCard';
-import { ArticleType } from '../../../types/Types';
-import useBuyMutation from '../../../hooks/useBuyMutation'
+import CartArticleCard from './CartArticleCard';
+import { ArticleType } from '../../types/Types';
+import useBuyMutation from '../../hooks/useBuyMutation'
 
 
 

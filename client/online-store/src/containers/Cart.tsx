@@ -1,4 +1,4 @@
-import CartArticleList from '../compontents/cart/article_list/CartArticleList';
+import CartArticleList from '../compontents/cart/CartArticleList';
 import useActiveCart from "../hooks/useActiveCart";
 
 

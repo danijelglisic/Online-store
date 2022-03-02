@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import Select from 'react-select'
-import CategoryFilters from './category_filters/CategoryFilters'
+import CategoryFilters from './CategoryFilters'
 import './Filters.css'
 import { FilterContext } from '../state/FilterContext';
 import { FilterContextType } from '../types/Types';

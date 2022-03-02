@@ -1,6 +1,6 @@
 import React from 'react'
 import { useMutation, gql } from "@apollo/client";
-import { ArticleType } from '../../../types/Types';
+import { ArticleType } from '../../types/Types';
 
 type Props = {
     article: ArticleType,
