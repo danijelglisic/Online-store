@@ -1,6 +1,6 @@
 import React, { SetStateAction } from 'react'
 import { useQuery, useMutation, gql, QueryResult } from "@apollo/client";
-import { ArticleType } from './ArticleList';
+import { FilterContextType } from '../../../types/Types';
 
 type Props = {
     id: string;

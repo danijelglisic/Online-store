@@ -104,7 +104,16 @@ const Query = {
   },
   articlesFilter: async (
     parent,
-    { search, category_ids, price_min, price_max, column, direction },
+    {
+      search,
+      category_ids,
+      price_min,
+      price_max,
+      column,
+      direction,
+      limit,
+      offset,
+    },
     ctx
   ) => {
     if (
@@ -123,7 +132,9 @@ const Query = {
       .andWhere("category_id", "in", category_ids)
       .andWhere("price", ">", price_min || 0)
       .andWhere("price", "<", price_max || 999999999990)
-      .orderBy(column || "name", direction || "asc");
+      .orderBy(column || "name", direction || "asc")
+      .limit(limit || 6)
+      .offset(offset || 0);
     return articles;
   },
   lastCartId: async (parent, { param }, {}) => {

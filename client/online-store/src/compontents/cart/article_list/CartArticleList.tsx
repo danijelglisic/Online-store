@@ -1,8 +1,8 @@
-import { gql, useQuery, useMutation } from '@apollo/client';
-import React, { useEffect, useState } from 'react'
-import CartArticleCard from './CartArticleCard';
-import { ArticleType } from './ArticleList';
-import { BuyMutation } from '../mutations/BuyMutation';
+import { gql, useQuery } from '@apollo/client';
+import React, { useEffect } from 'react'
+import CartArticleCard from '../article_card/CartArticleCard';
+import { ArticleType } from '../../../types/Types';
+import useBuyMutation from '../../../hooks/useBuyMutation'
 
 
 
@@ -19,11 +19,6 @@ query ArticlesInCart($cartId: ID!) {
     }
   }
 }`;
-const BUY_MUTATION = gql`
-mutation Mutation($cartId: ID!) {
-buy(cart_id: $cartId)
-}
-`;
 
 type Props = {
   cart_id: string,
@@ -31,29 +26,18 @@ type Props = {
 }
 
 const CartArticleList: React.FC<Props> = ({ cart_id, cartRefetch }) => {
-  // const [articles, setArticles] = useState<ArticleType[]>([]);
+
   const { data, error, loading, refetch } = useQuery(ARTICLES_IN_CART, {
     variables: {
       cartId: cart_id
     }
   });
-  const [buy, { }] = useMutation<any>(BUY_MUTATION,
-    {
-      onCompleted: () => {
-        cartRefetch();
-        console.log("Artikli su kupljeni");
-      }
-    });
-
-
-
+  const handleBuy = useBuyMutation(cart_id, cartRefetch);
 
 
   useEffect(() => {
     refetch();
   }, [refetch])
-
-  console.log('>>>>>>> data', data, loading)
 
 
 
@@ -101,11 +85,9 @@ const CartArticleList: React.FC<Props> = ({ cart_id, cartRefetch }) => {
         <div className="py-2 min-w-full divide-y divide-gray-200">
           <button type='button' className="text-left text-xs text-white uppercase bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
             onClick={
-              () => buy({
-                variables: {
-                  cartId: cart_id,
-                }
-              })
+              () => {
+                handleBuy();
+              }
             }>Buy</button>
         </div>
       </div>

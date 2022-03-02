@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { useQuery, gql, QueryResult } from "@apollo/client";
 import './CategoryFilters.css'
-import { FilterContext, FilterContextType } from '../state/FilterContext';
-
+import { FilterContext } from '../state/FilterContext';
+import { FilterContextType } from '../types/Types';
 
 
 export type Category = {

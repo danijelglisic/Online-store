@@ -1,38 +1,24 @@
-import React from 'react'
 import { useParams } from "react-router-dom";
-import { ArticleQuery } from '../queries/ArticleQuery';
-import { ArticleType } from '../compontents/ArticleList';
-import { gql, useMutation } from '@apollo/client'
-import LastCart from '../queries/LastCart';
+import { ArticleType } from '../types/Types';
 import { Link } from "react-router-dom";
-
-const ADD_TO_CART_MUTATION = gql`
-  mutation Mutation($articleId: ID!, $cartId: ID!, $amount: Int!) {
-  addToCart(article_id: $articleId, cart_id: $cartId, amount: $amount) {
-    cart_id
-    article_id
-    amount
-    id
-  }
-}
- `;
-
+import useActiveCart from '../hooks/useActiveCart';
+import useAddToCartMutation from "../hooks/useAddToCartMutation";
+import useArticleQuery from "../hooks/useArticleQuery";
 
 
 const Article = () => {
     const { params } = useParams();
-    const [addToCart] = useMutation<any>(ADD_TO_CART_MUTATION,
-        {
-            onCompleted: () => {
-                console.log("Artikal je dodan u korpu")
-            }
-        });
+    const article: ArticleType = useArticleQuery(params);
 
-    const article: ArticleType = ArticleQuery(params);
+    const result = useActiveCart();
 
-    const cart_id = LastCart();
 
-    console.log("ARTIKAL U KARTICI JE", article)
+    const handleAddToCart = useAddToCartMutation(result.data?.lastCartId, params, 1);
+
+
+    if (result.loading) return <div>Loading...</div>
+
+    if (result.error) return <div>Error...</div>
 
     return (
         <div className='flex text-base text-left transform transition w-full md:inline-block md:max-w-2xl md:px-4 md:my-8 md:align-middle lg:max-w-4xl'>
@@ -64,6 +50,16 @@ const Article = () => {
                                                 <p className=''>XXS</p>
                                                 <div className='absolute -inset-px rounded-md pointer-events-none border-2 border-transparent'></div>
                                             </label>
+                                            <label className="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 bg-white shadow-sm text-gray-900 cursor-pointer undefined">
+                                                <input type="radio" className="sr-only"></input>
+                                                <p className=''>XS</p>
+                                                <div className='absolute -inset-px rounded-md pointer-events-none border-2 border-transparent'></div>
+                                            </label>
+                                            <label className="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 bg-white shadow-sm text-gray-900 cursor-pointer undefined">
+                                                <input type="radio" className="sr-only"></input>
+                                                <p className=''>XL</p>
+                                                <div className='absolute -inset-px rounded-md pointer-events-none border-2 border-transparent'></div>
+                                            </label>
                                         </div>
                                     </fieldset>
                                 </div>
@@ -71,13 +67,9 @@ const Article = () => {
                                     type='button'
                                     className="mt-6 w-full bg-blue-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                     onClick={
-                                        () => addToCart({
-                                            variables: {
-                                                articleId: params,
-                                                cartId: cart_id,
-                                                amount: 1
-                                            }
-                                        })
+                                        () => {
+                                            handleAddToCart()
+                                        }
                                     }
                                 >Add to cart</button>
                             </form>

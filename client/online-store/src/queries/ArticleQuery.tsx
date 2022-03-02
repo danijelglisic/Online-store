@@ -1,7 +1,6 @@
-import { ArticleType } from "../compontents/ArticleList";
 import { gql, useQuery } from '@apollo/client'
 
-const ARTICLES_QUERY = gql`
+export const ARTICLE_QUERY = gql`
    query Query($articleId: ID!) {
   article(id: $articleId) {
     id
@@ -17,13 +16,13 @@ const ARTICLES_QUERY = gql`
   `;
 
 export const ArticleQuery = (id: string | undefined) => {
-    const { data, loading, error } = useQuery(ARTICLES_QUERY, {
-        variables: {
-            articleId: id,
-        }
-    })
+  const { data, loading, error } = useQuery(ARTICLE_QUERY, {
+    variables: {
+      articleId: id,
+    }
+  })
 
-    if (loading) return <p>Loading...</p>
-    if (error) return <p>Error, item don't exist :(</p>
-    if (data) return data.article
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error, item don't exist :(</p>
+  if (data) return data.article
 }

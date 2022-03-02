@@ -1,19 +1,5 @@
-import { createContext } from "react";
-
-export type FilterContextType = {
-    searchBar: string,
-    setSearchBar: (searchBar: string) => void,
-    categories: string[],
-    setCategories: (categoryIds: string[]) => void,
-    minPrice: number;
-    setMinPrice: (minPrice: number) => void,
-    maxPrice: number,
-    setMaxPrice: (maxPrice: number) => void,
-    sortByClmn: string,
-    setSortByClmn: (sortByClmn: string) => void,
-    sortDir: string,
-    setSortDir: (sortDir: string) => void,
-}
+import { createContext, useState } from "react";
+import { FilterContextType } from "../types/Types";
 
 export const FilterContext = createContext<FilterContextType>({
     searchBar: "",
@@ -31,3 +17,39 @@ export const FilterContext = createContext<FilterContextType>({
 });
 
 
+
+const CtxProvider: React.FC = (props) => {
+
+    const [searchBar, setSearchBar] = useState<string>("");
+    const [categoryIds, setCategoryIds] = useState<string[]>([]);
+    const [minPrice, setMinPrice] = useState<number>(0.00);
+    const [maxPrice, setMaxPrice] = useState<number>(1000000);
+    const [sortByClmn, setSortByClmn] = useState<string>("");
+    const [sortDir, setSortDir] = useState<string>("")
+
+
+    const filtersInitialState: FilterContextType = {
+        searchBar: searchBar,
+        setSearchBar: setSearchBar,
+        categories: categoryIds,
+        setCategories: setCategoryIds,
+        minPrice: minPrice,
+        setMinPrice: setMinPrice,
+        maxPrice: maxPrice,
+        setMaxPrice: setMaxPrice,
+        sortByClmn: sortByClmn,
+        setSortByClmn: setSortByClmn,
+        sortDir: sortDir,
+        setSortDir: setSortDir
+    }
+
+    return (
+        <div>
+            <FilterContext.Provider value={filtersInitialState}>
+                {props.children}
+            </FilterContext.Provider>
+        </div>
+    )
+}
+
+export default CtxProvider

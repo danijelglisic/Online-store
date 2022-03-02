@@ -1,23 +1,12 @@
-import React from 'react'
-
-import {
-    useQuery,
-    gql,
-    QueryResult
-} from "@apollo/client";
-import CartArticleList from '../compontents/CartArticleList';
+import CartArticleList from '../compontents/cart/article_list/CartArticleList';
+import useActiveCart from "../hooks/useActiveCart";
 
 
-const LAST_CART = gql`
-query Query {
-  lastCartId
-}
-`;
 
 const Cart = () => {
 
     //poslednja korpa u bazi
-    const result: QueryResult<any> = useQuery(LAST_CART);
+    const result = useActiveCart();
 
     if (result.loading) return <div>Loading...</div>
 

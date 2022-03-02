@@ -52,6 +52,8 @@ const typeDefs = gql`
       price_max: Float
       column: String
       direction: String
+      limit: Int
+      offset: Int
     ): [Article]
     lastCartId: ID
   }

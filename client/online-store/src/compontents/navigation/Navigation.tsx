@@ -1,11 +1,9 @@
-import React from 'react'
-import logo from './logo.jpeg'
-import cartImage from './cart_image.png'
 import './Navigation.css'
 import { Link } from "react-router-dom";
 import { useContext } from 'react';
-import { FilterContext, FilterContextType } from '../state/FilterContext';
+import { FilterContext } from '../../state/FilterContext';
 import debounce from 'lodash.debounce';
+import { FilterContextType } from '../../types/Types';
 
 
 const Navigation = () => {
