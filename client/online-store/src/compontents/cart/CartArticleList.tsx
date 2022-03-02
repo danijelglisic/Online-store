@@ -4,8 +4,6 @@ import CartArticleCard from './CartArticleCard';
 import { ArticleType } from '../../types/Types';
 import useBuyMutation from '../../hooks/useBuyMutation'
 
-
-
 const ARTICLES_IN_CART = gql`
 query ArticlesInCart($cartId: ID!) {
   articlesInCart(cart_id: $cartId) {
@@ -26,7 +24,6 @@ type Props = {
 }
 
 const CartArticleList: React.FC<Props> = ({ cartId, cartRefetch }) => {
-
   const { data, error, loading, refetch } = useQuery(ARTICLES_IN_CART, {
     variables: {
       cartId: cartId
@@ -34,22 +31,12 @@ const CartArticleList: React.FC<Props> = ({ cartId, cartRefetch }) => {
   });
   const handleBuy = useBuyMutation(cartId, cartRefetch);
 
-
   useEffect(() => {
     refetch();
   }, [refetch])
-
-
-
   if (loading) return <div>Loading...</div>
-
   if (error || !data) return <div>Error...</div>
-
   const articles: ArticleType[] = data.articlesInCart;
-
-
-
-
 
   console.log("Ovo su artikli", articles)
   return (

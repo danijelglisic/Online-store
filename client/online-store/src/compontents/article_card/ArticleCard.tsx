@@ -3,14 +3,11 @@ import './ArticleCard.css'
 import { Link } from 'react-router-dom'
 import { ArticleType } from '../../types/Types'
 
-
 type Props = {
     article: ArticleType
 }
 
-
 const ArticleCard: React.FC<Props> = ({ article }) => {
-
     return (
         <div className='group-relative pb-3 bg-gray-200 rounded-xl'>
             <Link to={`/article/${article.id}`} >

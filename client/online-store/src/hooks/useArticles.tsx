@@ -4,8 +4,6 @@ import { useContext, useState } from "react";
 import { FilterContextType } from "../types/Types";
 import { FilterContext } from "../state/FilterContext";
 
-
-
 const LIMIT: number = 4;
 
 const useArticles = () => {
@@ -25,8 +23,6 @@ const useArticles = () => {
             offset: page * LIMIT,
         }
     });
-
-
 
     return { result, page, setPage };
 }

@@ -5,12 +5,8 @@ import { FilterContext } from '../../state/FilterContext';
 import debounce from 'lodash.debounce';
 import { FilterContextType } from '../../types/Types';
 
-
 const Navigation = () => {
-
     const { setSearchBar } = useContext<FilterContextType>(FilterContext)
-
-
     const handleEventChange = debounce((search) => {
         setSearchBar(search);
     }, 300)

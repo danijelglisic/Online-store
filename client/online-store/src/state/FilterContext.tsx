@@ -16,8 +16,6 @@ export const FilterContext = createContext<FilterContextType>({
     setSortDir: () => { },
 });
 
-
-
 const CtxProvider: React.FC = (props) => {
 
     const [searchBar, setSearchBar] = useState<string>("");
@@ -26,7 +24,6 @@ const CtxProvider: React.FC = (props) => {
     const [maxPrice, setMaxPrice] = useState<number>(1000000);
     const [sortByClmn, setSortByClmn] = useState<string>("");
     const [sortDir, setSortDir] = useState<string>("")
-
 
     const filtersInitialState: FilterContextType = {
         searchBar: searchBar,

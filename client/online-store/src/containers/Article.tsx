@@ -1,31 +1,30 @@
 import { useParams } from "react-router-dom";
 import { ArticleType } from '../types/Types';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useActiveCart from '../hooks/useActiveCart';
 import useAddToCartMutation from "../hooks/useAddToCartMutation";
 import useArticleQuery from "../hooks/useArticleQuery";
 
-
 const Article = () => {
     const { params } = useParams();
     const article: ArticleType = useArticleQuery(params);
-
     const result = useActiveCart();
-
-
+    const navigate = useNavigate();
     const handleAddToCart = useAddToCartMutation(result.data?.lastCartId, params, 1);
-
-
     if (result.loading) return <div>Loading...</div>
-
     if (result.error) return <div>Error...</div>
+
 
     return (
         <div className='flex text-base text-left transform transition w-full md:inline-block md:max-w-2xl md:px-4 md:my-8 md:align-middle lg:max-w-4xl'>
             <div className="w-full relative flex items-center bg-white px-4 pt-14 pb-8 overflow-hidden shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
-                <button className='absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8'>
+                <button className='absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8'
+                    onClick={
+                        () => navigate(-1)
+                    }
+                >
                     <span className="sr-only">Back</span>
-                    <Link to="/"><p>  Back </p></Link>
+                    <p>  Back </p>
                 </button>
                 <div className="w-full grid grid-cols-1 gap-y-8 gap-x-6 items-start sm:grid-cols-12 lg:gap-x-8">
                     <div className="aspect-w-2 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">

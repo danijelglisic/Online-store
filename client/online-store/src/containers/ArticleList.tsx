@@ -4,12 +4,9 @@ import PaginationNav from '../pagination/PaginationNav';
 import { ArticleType } from '../types/Types';
 import useArticles from '../hooks/useArticles'
 
-type Props = {
-  cart_id: string
-}
 
-const AllArticles: React.FC<Props> = ({ cart_id }) => {
 
+const AllArticles: React.FC = () => {
   const { result, page, setPage } = useArticles();
   if (result.loading) return <p>Loading...</p>
   if (result.error) return <p>Error...</p>

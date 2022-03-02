@@ -3,7 +3,6 @@ import { useQuery, gql } from "@apollo/client";
 import { FilterContext } from '../state/FilterContext';
 import { FilterContextType } from '../types/Types';
 
-
 export type Category = {
     id: string,
     name: string,
@@ -11,12 +10,10 @@ export type Category = {
     image_url: string;
     parent_id: string;
 }
+
 export type CategoryData = {
     categories: Category[];
 }
-
-
-
 
 const CATEGORIES_QUERY = gql`
    query Query {
@@ -29,17 +26,9 @@ const CATEGORIES_QUERY = gql`
 }
   `;
 
-
-
-
-
-
 const CategoryFilters = () => {
-
     const { categories, setCategories } = useContext<FilterContextType>(FilterContext)
-
     const { data, loading, error } = useQuery<CategoryData>(CATEGORIES_QUERY);
-
     if (error) return <div>Error...</div>
 
     return loading ? (<div>Loading...</div>) : (

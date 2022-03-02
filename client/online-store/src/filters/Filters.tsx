@@ -12,7 +12,6 @@ type tmpState = {
     sortDir: string,
 }
 
-
 const Filters = () => {
 
     const { setMinPrice, setMaxPrice, setSortByClmn, setSortDir } = useContext<FilterContextType>(FilterContext)
@@ -22,8 +21,6 @@ const Filters = () => {
         sortByClmn: "",
         sortDir: ""
     });
-
-
 
     return (
         <div className="w-1/4 max-w-2xl mx-auto py-5 px-4 sm:py-5 sm:px-6 lg:max-w-7xl lg:px-8">

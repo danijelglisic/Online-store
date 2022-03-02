@@ -7,15 +7,14 @@ type Props = {
     cartId: string,
     refetch: () => void
 }
+
 const REMOVE_FROM_CART_MUTATION = gql`
   mutation Mutation($articleId: ID!, $cartId: ID!) {
   removeFromCart(article_id: $articleId, cart_id: $cartId)
 }
  `;
 
-
 const CartArticleCard: React.FC<Props> = ({ article, cartId, refetch }) => {
-
     const [removeFromCart] = useMutation<any>(REMOVE_FROM_CART_MUTATION, {
         onCompleted: () => {
             refetch()

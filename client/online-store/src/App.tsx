@@ -8,11 +8,7 @@ import Article from './containers/Article';
 import Cart from './containers/Cart';
 import CtxProvider from './state/FilterContext'
 
-
-
 function App() {
-
-
   return (
     <div className="App">
       <CtxProvider>

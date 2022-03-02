@@ -5,8 +5,6 @@ type Props = {
     setPage: (page: number) => void;
 }
 
-
-
 const PaginationNav: React.FC<Props> = ({ page, setPage }) => {
     return (
         <div>
