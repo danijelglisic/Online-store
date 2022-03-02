@@ -1,31 +1,19 @@
 import React from 'react'
-
-import ArticleCard from '../article_card/ArticleCard';
-import './ArticleList.css';
-import PaginationNav from '../../pagination/PaginationNav';
-import { ArticleType } from '../../types/Types';
-import useArticles from '../../hooks/useArticles';
-
-
-
-
-
+import ArticleCard from '../compontents/article_card/ArticleCard';
+import PaginationNav from '../pagination/PaginationNav';
+import { ArticleType } from '../types/Types';
+import useArticles from '../hooks/useArticles'
 
 type Props = {
   cart_id: string
 }
 
-
 const AllArticles: React.FC<Props> = ({ cart_id }) => {
 
   const { result, page, setPage } = useArticles();
-
   if (result.loading) return <p>Loading...</p>
   if (result.error) return <p>Error...</p>
-
   const articles: ArticleType[] = result.data.articlesFilter;
-
-
 
   return (
     <div className="bg-white w-3/4">

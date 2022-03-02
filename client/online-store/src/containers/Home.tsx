@@ -1,5 +1,5 @@
 import Filters from '../filters/Filters'
-import ArticleList from '../compontents/article_list/ArticleList';
+import ArticleList from './ArticleList';
 import useActiveCart from '../hooks/useActiveCart';
 
 const Home = () => {
