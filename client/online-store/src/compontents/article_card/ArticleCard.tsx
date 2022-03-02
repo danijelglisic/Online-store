@@ -1,4 +1,3 @@
-import { useMutation, gql } from "@apollo/client";
 import React from 'react'
 import './ArticleCard.css'
 import { Link } from 'react-router-dom'
@@ -9,24 +8,8 @@ type Props = {
     article: ArticleType
 }
 
-const ADD_TO_CART_MUTATION = gql`
-  mutation Mutation($articleId: ID!, $cartId: ID!, $amount: Int!) {
-  addToCart(article_id: $articleId, cart_id: $cartId, amount: $amount) {
-    cart_id
-    article_id
-    amount
-    id
-  }
-}
- `;
 
 const ArticleCard: React.FC<Props> = ({ article }) => {
-    const [addToCart] = useMutation<any>(ADD_TO_CART_MUTATION,
-        {
-            onCompleted: () => {
-                console.log("Artikal je dodan u korpu")
-            }
-        });
 
     return (
         <div className='group-relative pb-3 bg-gray-200 rounded-xl'>

@@ -1,14 +1,19 @@
-import Filters from '../compontents/Filters'
+import Filters from '../filters/Filters'
 import ArticleList from '../compontents/article_list/ArticleList';
-import ActiveCart from '../queries/ActiveCart';
 import useActiveCart from '../hooks/useActiveCart';
 
 const Home = () => {
-    const cart_id = useActiveCart();
+    const result = useActiveCart();
+
+    if (result.loading) return <div>Loading...</div>
+
+    if (result.error) return <div>Error...</div>
+
+    const cartId = result.data.lastCartId;
 
     return (
         <div className="main">
-            <ArticleList cart_id={cart_id.data.id} />
+            <ArticleList cart_id={cartId} />
             <Filters />
         </div>
     )

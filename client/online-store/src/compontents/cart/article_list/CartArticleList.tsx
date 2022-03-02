@@ -21,18 +21,18 @@ query ArticlesInCart($cartId: ID!) {
 }`;
 
 type Props = {
-  cart_id: string,
+  cartId: string,
   cartRefetch: () => void;
 }
 
-const CartArticleList: React.FC<Props> = ({ cart_id, cartRefetch }) => {
+const CartArticleList: React.FC<Props> = ({ cartId, cartRefetch }) => {
 
   const { data, error, loading, refetch } = useQuery(ARTICLES_IN_CART, {
     variables: {
-      cartId: cart_id
+      cartId: cartId
     }
   });
-  const handleBuy = useBuyMutation(cart_id, cartRefetch);
+  const handleBuy = useBuyMutation(cartId, cartRefetch);
 
 
   useEffect(() => {
@@ -71,13 +71,8 @@ const CartArticleList: React.FC<Props> = ({ cart_id, cartRefetch }) => {
             {
               articles.map(article => <CartArticleCard
                 key={article.id}
-                id={article.id}
-                name={article.name}
-                image_url={article.image_url}
-                price={article.price}
-                category_id={article.category.id}
-                category_name={article.category.name}
-                cart_id={cart_id}
+                article={article}
+                cartId={cartId}
                 refetch={refetch} />)
             }
           </tbody>
