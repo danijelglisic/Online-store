@@ -1,5 +1,5 @@
 import React from 'react'
-import ArticleCard from '../compontents/article_card/ArticleCard';
+import ArticleCard from '../compontents/articleCard/ArticleCard';
 import PaginationNav from '../pagination/PaginationNav';
 import { ArticleType } from '../types/Types';
 import useArticles from '../hooks/useArticlesQuery'
