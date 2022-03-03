@@ -22,8 +22,7 @@ const CATEGORIES_QUERY = gql`
     name
     image_url
     parent_id
-  }
-}
+  }}
   `;
 
 const CategoryFilters = () => {
