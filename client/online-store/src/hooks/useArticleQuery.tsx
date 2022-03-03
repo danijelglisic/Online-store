@@ -8,8 +8,10 @@ const useArticleQuery = (id: string | undefined) => {
         }
     })
 
+    const loadingArticle = loading
+    const errorLoadingArticle = error
 
-    return { data, loading, error }
+    return { data, loadingArticle, errorLoadingArticle }
 }
 
 

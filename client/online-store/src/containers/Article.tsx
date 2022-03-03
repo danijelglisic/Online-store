@@ -7,12 +7,14 @@ import useArticleQuery from "../hooks/useArticleQuery";
 
 const Article = () => {
     const { params } = useParams();
-    const { data } = useArticleQuery(params);
+    const { data, loadingArticle, errorLoadingArticle } = useArticleQuery(params);
     const result = useActiveCart();
     const navigate = useNavigate();
     const handleAddToCart = useAddToCartMutation(result.data?.lastCartId, params, 1);
-    if (result.loading) return <div>Loading...</div>
-    if (result.error) return <div>Error...</div>
+    if (result.loading || loadingArticle) return <div>Loading...</div>
+    if (result.error || errorLoadingArticle) return <div>Error...</div>
+
+    console.log(data);
 
     const article: ArticleType = data.article;
 
