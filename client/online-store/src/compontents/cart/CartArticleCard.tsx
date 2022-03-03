@@ -1,6 +1,6 @@
 import React from 'react'
-import { useMutation, gql } from "@apollo/client";
 import { ArticleType } from '../../types/Types';
+import useRemoveFromCartMutation from '../../hooks/useRemoveFromCartMutation'
 
 type Props = {
     article: ArticleType,
@@ -8,18 +8,8 @@ type Props = {
     refetch: () => void
 }
 
-const REMOVE_FROM_CART_MUTATION = gql`
-  mutation Mutation($articleId: ID!, $cartId: ID!) {
-  removeFromCart(article_id: $articleId, cart_id: $cartId)
-}
- `;
-
 const CartArticleCard: React.FC<Props> = ({ article, cartId, refetch }) => {
-    const [removeFromCart] = useMutation<any>(REMOVE_FROM_CART_MUTATION, {
-        onCompleted: () => {
-            refetch()
-        }
-    })
+    const handleRemoveFromCart = useRemoveFromCartMutation(article.id, cartId, refetch)
 
     return (
         <tr>
@@ -44,15 +34,10 @@ const CartArticleCard: React.FC<Props> = ({ article, cartId, refetch }) => {
             <td className="px-6 py-4 text-left whitespace-nowrap">1 </td>
             <td className="px-6 py-4 text-left swhitespace-nowrap">
                 <button onClick={
-                    () => removeFromCart({
-                        variables: {
-                            articleId: article.id,
-                            cartId: cartId,
-                        }
-                    })
+                    () => handleRemoveFromCart()
                 } className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded" >X</button>
             </td>
-        </tr>
+        </tr >
     )
 }
 

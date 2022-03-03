@@ -1,22 +1,8 @@
-import { gql, useQuery } from '@apollo/client';
 import React, { useEffect } from 'react'
 import CartArticleCard from './CartArticleCard';
 import { ArticleType } from '../../types/Types';
 import useBuyMutation from '../../hooks/useBuyMutation'
-
-const ARTICLES_IN_CART = gql`
-query ArticlesInCart($cartId: ID!) {
-  articlesInCart(cart_id: $cartId) {
-    id
-    name
-    price
-    image_url
-    category {
-      id
-      name
-    }
-  }
-}`;
+import useArticlesInCartQuery from '../../hooks/useArticlesInCartQuery'
 
 type Props = {
   cartId: string,
@@ -24,16 +10,14 @@ type Props = {
 }
 
 const CartArticleList: React.FC<Props> = ({ cartId, cartRefetch }) => {
-  const { data, error, loading, refetch } = useQuery(ARTICLES_IN_CART, {
-    variables: {
-      cartId: cartId
-    }
-  });
+
+  const { data, error, loading, refetch } = useArticlesInCartQuery(cartId);
   const handleBuy = useBuyMutation(cartId, cartRefetch);
 
   useEffect(() => {
     refetch();
   }, [refetch])
+
   if (loading) return <div>Loading...</div>
   if (error || !data) return <div>Error...</div>
   const articles: ArticleType[] = data.articlesInCart;

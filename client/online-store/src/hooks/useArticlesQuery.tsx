@@ -6,7 +6,7 @@ import { FilterContext } from "../state/FilterContext";
 
 const LIMIT: number = 4;
 
-const useArticles = () => {
+const useArticlesQuery = () => {
 
     const [page, setPage] = useState<number>(0);
     const { searchBar, categories, minPrice, maxPrice, sortByClmn, sortDir } = useContext<FilterContextType>(FilterContext)
@@ -27,4 +27,4 @@ const useArticles = () => {
     return { result, page, setPage };
 }
 
-export default useArticles
+export default useArticlesQuery

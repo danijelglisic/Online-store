@@ -1,5 +1,5 @@
 import CartArticleList from '../compontents/cart/CartArticleList';
-import useActiveCart from "../hooks/useActiveCart";
+import useActiveCart from "../hooks/useActiveCartQuery";
 
 const Cart = () => {
     const result = useActiveCart();

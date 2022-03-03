@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { ArticleType } from '../types/Types';
 import { useNavigate } from "react-router-dom";
-import useActiveCart from '../hooks/useActiveCart';
+import useActiveCart from '../hooks/useActiveCartQuery';
 import useAddToCartMutation from "../hooks/useAddToCartMutation";
 import useArticleQuery from "../hooks/useArticleQuery";
 

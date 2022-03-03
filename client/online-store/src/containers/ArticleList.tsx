@@ -2,9 +2,7 @@ import React from 'react'
 import ArticleCard from '../compontents/article_card/ArticleCard';
 import PaginationNav from '../pagination/PaginationNav';
 import { ArticleType } from '../types/Types';
-import useArticles from '../hooks/useArticles'
-
-
+import useArticles from '../hooks/useArticlesQuery'
 
 const AllArticles: React.FC = () => {
   const { result, page, setPage } = useArticles();

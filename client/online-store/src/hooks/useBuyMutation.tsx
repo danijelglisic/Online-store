@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client"
 import { BUY_MUTATION } from "../mutations/BuyMutation";
 
-const BuyMutation = (cart_id: string, refetch: () => void) => {
+const useBuyMutation = (cart_id: string, refetch: () => void) => {
     const [buy] = useMutation<any>(BUY_MUTATION);
 
     const handleBuy = async () => {
@@ -19,4 +19,4 @@ const BuyMutation = (cart_id: string, refetch: () => void) => {
     return handleBuy;
 }
 
-export default BuyMutation
+export default useBuyMutation
