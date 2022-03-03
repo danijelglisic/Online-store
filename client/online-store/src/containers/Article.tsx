@@ -7,13 +7,14 @@ import useArticleQuery from "../hooks/useArticleQuery";
 
 const Article = () => {
     const { params } = useParams();
-    const article: ArticleType = useArticleQuery(params);
+    const { data } = useArticleQuery(params);
     const result = useActiveCart();
     const navigate = useNavigate();
     const handleAddToCart = useAddToCartMutation(result.data?.lastCartId, params, 1);
     if (result.loading) return <div>Loading...</div>
     if (result.error) return <div>Error...</div>
 
+    const article: ArticleType = data.article;
 
     return (
         <div className='flex text-base text-left transform transition w-full md:inline-block md:max-w-2xl md:px-4 md:my-8 md:align-middle lg:max-w-4xl'>

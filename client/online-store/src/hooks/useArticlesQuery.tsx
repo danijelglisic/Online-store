@@ -14,7 +14,7 @@ const useArticlesQuery = () => {
     const result: QueryResult<any> = useQuery(ARTICLES_QUERY, {
         variables: {
             search: searchBar,
-            categoryIds: categories || [""],
+            categoryIds: categories || [],
             priceMin: minPrice,
             priceMax: maxPrice,
             column: sortByClmn,

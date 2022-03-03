@@ -7,9 +7,9 @@ const useArticleQuery = (id: string | undefined) => {
             articleId: id,
         }
     })
-    if (loading) return <p>Loading...</p>
-    if (error) return <p>Error, item don't exist :(</p>
-    if (data) return data.article
+
+
+    return { data, loading, error }
 }
 
 
