@@ -1,5 +1,6 @@
 .filters {
   width: 25%;
+  min-width: 900px;
 }
 .price {
   display: inline-block;

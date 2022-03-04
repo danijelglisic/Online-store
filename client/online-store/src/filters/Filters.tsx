@@ -20,10 +20,9 @@ const Filters = () => {
         maxPrice: 10000000,
         sortByClmn: "",
         sortDir: ""
-    });
-
+    })
     return (
-        <div className="w-1/4 max-w-2xl mx-auto py-5 px-4 sm:py-5 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div className="w-1/4 max-w-2xl mx-auto py-5 px-4 min-w-640 sm:py-5 sm:px-6 lg:max-w-7xl lg:px-8">
             <label className="py-3 bg-white w-full flex items-center justify-between text-lg text-gray-600 ">Categories </label>
             <CategoryFilters />
             <div>
