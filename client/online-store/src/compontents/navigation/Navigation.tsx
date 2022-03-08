@@ -10,8 +10,8 @@ const Navigation = () => {
 
 
     return (
-        <div className="bg-gray-100 nav-bar">
-            <nav className="bg-gray-800">
+        <div className="bg-gray-100 fixed top-0 w-full overflow-hidden nav-bar">
+            <nav className="bg-gray-800 ">
                 <div className="max-w-9xl mx-5 px-2 sm:px-6 lg:px-8">
                     <div className="relative flex items-center justify-between h-16 logo">
                         <div className="flex-1 flex items-center w-full justify-center">
@@ -38,7 +38,7 @@ const Navigation = () => {
                                 <div className='flex-shrink-0 flex items-center mx-10 justify-right '>
                                     <div className='relative z-0 text-white-600 h-10 w-10 rounded-md fill-current justify-right '>
                                         <img className='z-10 absolute text-white-600 h-10 w-10 rounded-md fill-current' src='https://cdn3.iconfinder.com/data/icons/e-commerce-2-2/380/1-512.png' alt=""></img>
-                                        <div className='z-20 absolute rounded-lg bg-blue-500 text-white text-sm px-1 float-right' >
+                                        <div className='z-20 absolute rounded-lg bg-blue-500 text-white text-sm px-1 top-0 right-0' >
                                             {2}
                                         </div>
                                     </div>

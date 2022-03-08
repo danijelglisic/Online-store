@@ -4,6 +4,7 @@
 
 .main {
   display: flex;
+  margin-top: 80px;
 }
 
 .App-logo {
