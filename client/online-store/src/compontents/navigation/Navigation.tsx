@@ -1,15 +1,13 @@
 import './Navigation.css'
 import { Link } from "react-router-dom";
-import { useContext } from 'react';
-import { FilterContext } from '../../state/FilterContext';
 import debounce from 'lodash.debounce';
-import { FilterContextType } from '../../types/Types';
+import Fltrs from '../../mobX/State';
 
 const Navigation = () => {
-    const { setSearchBar } = useContext<FilterContextType>(FilterContext)
     const handleEventChange = debounce((search) => {
-        setSearchBar(search);
+        Fltrs.setSearchBar(search);
     }, 300)
+
 
     return (
         <div className="bg-gray-100 nav-bar">
@@ -37,8 +35,13 @@ const Navigation = () => {
                                 </div>
                             </div>
                             <Link to='/cart' className="flex-1 flex ml-14 items-center w-full w-1/4 justify-end ">
-                                <div className=' flex-shrink-0 flex items-center mx-10 justify-right '>
-                                    <img className='text-white-600 h-10 w-10 rounded-md fill-current justify-right ' src='https://cdn3.iconfinder.com/data/icons/e-commerce-2-2/380/1-512.png' alt=""></img>
+                                <div className='flex-shrink-0 flex items-center mx-10 justify-right '>
+                                    <div className='relative z-0 text-white-600 h-10 w-10 rounded-md fill-current justify-right '>
+                                        <img className='z-10 absolute text-white-600 h-10 w-10 rounded-md fill-current' src='https://cdn3.iconfinder.com/data/icons/e-commerce-2-2/380/1-512.png' alt=""></img>
+                                        <div className='z-20 absolute rounded-lg bg-blue-500 text-white text-sm px-1 float-right' >
+                                            {2}
+                                        </div>
+                                    </div>
                                 </div>
                             </Link>
                         </div>

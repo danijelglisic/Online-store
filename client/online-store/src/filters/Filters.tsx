@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import Select from 'react-select'
 import CategoryFilters from './CategoryFilters'
 import './Filters.css'
-import { FilterContext } from '../state/FilterContext';
-import { FilterContextType } from '../types/Types';
+import Fltrs from '../mobX/State';
+import { observer } from 'mobx-react-lite';
 
 type tmpState = {
     minPrice: number,
@@ -14,7 +14,6 @@ type tmpState = {
 
 const Filters = () => {
 
-    const { setMinPrice, setMaxPrice, setSortByClmn, setSortDir } = useContext<FilterContextType>(FilterContext)
     const [tmpState, setTmpState] = useState<tmpState>({
         minPrice: 0.0,
         maxPrice: 10000000,
@@ -116,10 +115,10 @@ const Filters = () => {
                 className="text-left  float-left text-md text-white uppercase my-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-700 rounded"
                 onClick={
                     () => {
-                        setMaxPrice(tmpState.maxPrice);
-                        setMinPrice(tmpState.minPrice);
-                        setSortByClmn(tmpState.sortByClmn);
-                        setSortDir(tmpState.sortDir);
+                        Fltrs.setMaxPrice(tmpState.maxPrice);
+                        Fltrs.setMinPrice(tmpState.minPrice);
+                        Fltrs.setSortByClmn(tmpState.sortByClmn);
+                        Fltrs.setSortDir(tmpState.sortDir);
                     }
                 }
             >Apply</button>
@@ -127,4 +126,4 @@ const Filters = () => {
     )
 }
 
-export default Filters
+export default observer(Filters)

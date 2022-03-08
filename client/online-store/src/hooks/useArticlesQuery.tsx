@@ -1,28 +1,30 @@
 import { ARTICLES_QUERY } from "../queries/ArticlesQuery"
 import { useQuery, QueryResult } from "@apollo/client";
-import { useContext, useState } from "react";
-import { FilterContextType } from "../types/Types";
-import { FilterContext } from "../state/FilterContext";
+import { useState } from "react";
+import Fltrs from "../mobX/State";
+import { onPatch } from "mobx-state-tree";
 
-const LIMIT: number = 4;
+const LIMIT: number = 10;
 
 const useArticlesQuery = () => {
 
     const [page, setPage] = useState<number>(0);
-    const { searchBar, categories, minPrice, maxPrice, sortByClmn, sortDir } = useContext<FilterContextType>(FilterContext)
 
     const result: QueryResult<any> = useQuery(ARTICLES_QUERY, {
         variables: {
-            search: searchBar,
-            categoryIds: categories || [],
-            priceMin: minPrice,
-            priceMax: maxPrice,
-            column: sortByClmn,
-            direction: sortDir,
+            search: Fltrs.searchBar,
+            categoryIds: Fltrs.categoryIds || [],
+            priceMin: Fltrs.minPrice,
+            priceMax: Fltrs.maxPrice,
+            column: Fltrs.sortByClmn,
+            direction: Fltrs.sortDir,
             limit: LIMIT,
             offset: page * LIMIT,
         }
     });
+    onPatch(Fltrs, () => {
+        result.refetch()
+    })
 
     return { result, page, setPage };
 }

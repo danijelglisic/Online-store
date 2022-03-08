@@ -1,7 +1,5 @@
-import React, { useContext } from 'react'
 import { useQuery, gql } from "@apollo/client";
-import { FilterContext } from '../state/FilterContext';
-import { FilterContextType } from '../types/Types';
+import Fltrs from '../mobX/State';
 
 export type Category = {
     id: string,
@@ -26,7 +24,6 @@ const CATEGORIES_QUERY = gql`
   `;
 
 const CategoryFilters = () => {
-    const { categories, setCategories } = useContext<FilterContextType>(FilterContext)
     const { data, loading, error } = useQuery<CategoryData>(CATEGORIES_QUERY);
     if (error) return <div>Error...</div>
 
@@ -41,13 +38,13 @@ const CategoryFilters = () => {
                             onChange={
                                 (e) => {
                                     if (e.target.checked === true) {
-                                        const newC = [...categories, category.id];
-                                        setCategories(newC);
+                                        const newC = [...Fltrs.categoryIds, category.id];
+                                        Fltrs.setCategoryIds(newC);
                                         console.log("NEWC", newC)
                                     }
                                     else if (e.target.checked === false) {
-                                        const newC = categories.filter(c => c !== category.id);
-                                        setCategories(newC);
+                                        const newC = Fltrs.categoryIds.filter(c => c !== category.id);
+                                        Fltrs.setCategoryIds(newC);
                                         console.log("NEWC", newC)
                                     }
                                 }
