@@ -23,7 +23,8 @@ const useArticlesQuery = () => {
         }
     });
     onPatch(Fltrs, () => {
-        result.refetch()
+        result.refetch();
+        console.log("Search je: ", Fltrs.searchBar)
     })
 
     return { result, page, setPage };

@@ -6,7 +6,8 @@ export const Fltrs = types.model({
     minPrice: types.optional(types.number, 0.00),
     maxPrice: types.optional(types.number, 100000),
     sortByClmn: types.optional(types.string, ''),
-    sortDir: types.optional(types.string, '')
+    sortDir: types.optional(types.string, ''),
+    numberInCart: types.optional(types.number, 0)
 })
     .actions(self => ({
         setSearchBar(newSearch: string) {
@@ -26,6 +27,9 @@ export const Fltrs = types.model({
         },
         setSortDir(sortDir: string) {
             self.sortDir = sortDir;
+        },
+        setNumberInCart(number: number) {
+            self.numberInCart = number;
         }
     }))
     .create({})

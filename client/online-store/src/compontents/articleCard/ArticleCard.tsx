@@ -2,7 +2,6 @@ import React from 'react'
 import './ArticleCard.css'
 import { Link } from 'react-router-dom'
 import { ArticleType } from '../../types/Types'
-import Fltrs from '../../mobX/State'
 
 type Props = {
     article: ArticleType

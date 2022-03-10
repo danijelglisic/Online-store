@@ -5,11 +5,11 @@ import useRemoveFromCartMutation from '../../hooks/useRemoveFromCartMutation'
 type Props = {
     article: ArticleType,
     cartId: string,
-    refetch: () => void
+    refetch: () => void,
 }
 
 const CartArticleCard: React.FC<Props> = ({ article, cartId, refetch }) => {
-    const handleRemoveFromCart = useRemoveFromCartMutation(article.id, cartId, refetch)
+    const handleRemoveFromCart = useRemoveFromCartMutation(article.id, cartId, refetch);
 
     return (
         <tr>
@@ -31,7 +31,12 @@ const CartArticleCard: React.FC<Props> = ({ article, cartId, refetch }) => {
             <td className="px-6 py-4 text-left whitespace-nowrap">
                 <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{article.price}</span>
             </td>
-            <td className="px-6 py-4 text-left whitespace-nowrap">1 </td>
+
+            <td className="px-6 py-4 text-left flex whitespace-nowrap">
+                <button className="mx-2 rounded-sm p-1 hover:bg-gray-400">-</button>
+                <div className="mx-2 p-1">1</div>
+                <button className="mx-2 rounded-sm p-1 hover:bg-gray-400">+</button>
+            </td>
             <td className="px-6 py-4 text-left swhitespace-nowrap">
                 <button onClick={
                     () => handleRemoveFromCart()

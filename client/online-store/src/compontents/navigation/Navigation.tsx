@@ -2,6 +2,8 @@ import './Navigation.css'
 import { Link } from "react-router-dom";
 import debounce from 'lodash.debounce';
 import Fltrs from '../../mobX/State';
+import { observer } from 'mobx-react';
+
 
 const Navigation = () => {
     const handleEventChange = debounce((search) => {
@@ -34,12 +36,17 @@ const Navigation = () => {
                                     </button>
                                 </div>
                             </div>
+                            <div className="flex-1 flex ml-14 items-center w-full w-1/4 justify-end ">
+                                <Link to="/allPurchases" className="">
+                                    <h1 className="text-lg text-white">Purchases</h1>
+                                </Link>
+                            </div>
                             <Link to='/cart' className="flex-1 flex ml-14 items-center w-full w-1/4 justify-end ">
                                 <div className='flex-shrink-0 flex items-center mx-10 justify-right '>
                                     <div className='relative z-0 text-white-600 h-10 w-10 rounded-md fill-current justify-right '>
                                         <img className='z-10 absolute text-white-600 h-10 w-10 rounded-md fill-current' src='https://cdn3.iconfinder.com/data/icons/e-commerce-2-2/380/1-512.png' alt=""></img>
                                         <div className='z-20 absolute rounded-lg bg-blue-500 text-white text-sm px-1 top-0 right-0' >
-                                            {2}
+                                            {Fltrs.numberInCart}
                                         </div>
                                     </div>
                                 </div>
@@ -52,4 +59,4 @@ const Navigation = () => {
     )
 }
 
-export default Navigation
+export default observer(Navigation)

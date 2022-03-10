@@ -7,6 +7,8 @@ import { Routes, Route } from "react-router-dom";
 import Article from './containers/Article';
 import Cart from './containers/Cart';
 import CtxProvider from './state/FilterContext'
+import Purchases from './containers/Purchases';
+import PurchaseCard from './compontents/PurchaseCard';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/article/:params" element={<Article />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/allPurchases" element={<Purchases />} />
+            <Route path="/purchase/:params" element={<PurchaseCard />} />
           </Routes>
         </ApolloProvider>
       </CtxProvider>

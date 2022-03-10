@@ -145,6 +145,30 @@ const Query = {
 
     return id;
   },
+  allPurchases: async (parent, {}, {}) => {
+    const orders = await knex("order");
+    return orders;
+  },
+  purchase: async (parent, { order_id }, {}) => {
+    console.log(">>>>>", order_id);
+    const articlesIdArray = await knex
+      .select("article_id")
+      .from("order_articles")
+      .where("order_id", order_id);
+
+    console.log(">Svi idijevi>>>>", articlesIdArray);
+
+    let fullArticle = await knex
+      .select()
+      .from("article")
+      .whereIn(
+        "id",
+        articlesIdArray.map((id) => id.article_id)
+      );
+
+    console.log(">Citav artikal>>>", fullArticle);
+    return fullArticle;
+  },
 };
 
 module.exports = Query;

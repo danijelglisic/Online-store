@@ -56,6 +56,8 @@ const typeDefs = gql`
       offset: Int
     ): [Article]
     lastCartId: ID
+    allPurchases: [Order]
+    purchase(order_id: ID!): [Article]
   }
   type Mutation {
     addToCart(article_id: ID!, cart_id: ID!, amount: Int!): Cart_Articles

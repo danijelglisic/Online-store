@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import CartArticleCard from './CartArticleCard';
 import { ArticleType } from '../../types/Types';
 import useBuyMutation from '../../hooks/useBuyMutation'
 import useArticlesInCartQuery from '../../hooks/useArticlesInCartQuery'
+import Fltrs from '../../mobX/State';
+import { observer } from 'mobx-react';
 
 type Props = {
   cartId: string,
@@ -21,6 +23,7 @@ const CartArticleList: React.FC<Props> = ({ cartId, cartRefetch }) => {
   if (loading) return <div>Loading...</div>
   if (error || !data) return <div>Error...</div>
   const articles: ArticleType[] = data.articlesInCart;
+  Fltrs.setNumberInCart(articles.length)
 
   console.log("Ovo su artikli", articles)
   return (
@@ -49,17 +52,21 @@ const CartArticleList: React.FC<Props> = ({ cartId, cartRefetch }) => {
           </tbody>
         </table>
         <div className="py-2 min-w-full divide-y divide-gray-200">
+          Total price is:
+        </div>
+        <div className="py-2 min-w-full divide-y divide-gray-200">
           <button type='button' className="text-left text-xs text-white uppercase bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
             onClick={
               () => {
-                handleBuy();
+                if (Fltrs.numberInCart > 0) { handleBuy(); }
               }
             }>Buy</button>
         </div>
+
       </div>
     </div >
   )
 }
 
-export default CartArticleList
+export default observer(CartArticleList)
 
