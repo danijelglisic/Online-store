@@ -27,8 +27,8 @@ const CartArticleList: React.FC<Props> = ({ cartId, cartRefetch }) => {
 
   console.log("Ovo su artikli", articles)
   return (
-    <div>
-      <div className="">
+    <div className="min-w-full" >
+      <div className="min-w-full">
         <table className="min-w-full divide-y divide-gray-200 border-y-2">
           <thead className="bg-gray-50">
             <tr>

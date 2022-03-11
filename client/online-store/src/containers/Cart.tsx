@@ -8,7 +8,7 @@ const Cart = () => {
     const cartId = result.data.lastCartId;
 
     return (
-        <div className="mt-20">
+        <div className="mt-20 w-1/2 justify-center inline-flex ">
             <CartArticleList cartId={cartId} cartRefetch={result.refetch} />
         </div>
     )

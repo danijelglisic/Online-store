@@ -19,8 +19,8 @@ const PurchaseRow: React.FC<Props> = ({ id }) => {
             <div className='my-2 w-1/2'>
                 {id}
             </div>
-            <div className='m-2 mx-8'>
-                <p>Amount: {PurchaseState.articles.length}</p>
+            <div className='m-2 mx-8 justify-items-start'>
+                <p>Items: {PurchaseState.articles.length}</p>
             </div>
             <Link to={`/purchase/${id}`} className="">
                 <button className='text-left text-xs text-white uppercase bg-blue-500 hover:bg-blue-700 text-white h-8 font-bold my-1 px-4 border border-blue-700 rounded'>See more</button>
